@@ -1,0 +1,268 @@
+/** -recuerda, las clases son una forma de especificar que contenido se va a modificar. **/
+/** -siempre se debe colocar en el elemento 'padre' para modificar el contenido 'hijo'. **/
+/** -este proyecto esta hecho usando Modulos y Utilidades que son formas de codigo en CSS **/
+
+:root {               /**Codigo para crear una base de datos pequeña (paleta de colores)**/
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --primario: #FFC107;
+    --secundario: #0097A7;
+    --gris: #757575;
+    --grisClaro: #DFE9F3;
+}
+/* Globales */
+html {          /**Parametros por defecto para que la pagina sea estable -1 **/
+    font-size: 62.5%; /** hack para aprovechar el potencial del (rem) **/
+    box-sizing: border-box; /** evita que se aplique el box model en CSS **/
+    scroll-snap-type: y mandatory;
+}
+/* Scroll Snap */                   /* El Scroll snap sirve para hacer efecto de Scroll a la pagina */
+.servicios,
+.navegacion-principal,
+.formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+*, *:before, *:after { /** que se aplicara el cambio en el contenido antes y despues **/
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.8rem; /** -1 y se adapte su dencidad en varias pantallas **/
+    font-family: 'Nunito', sans-serif; /* fuente externa */
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%);
+    /* para hacer un degradado se usa este codigo donde 'to top' representa hacia donde ira el degradado */
+}
+
+.contenedor {
+    max-width: 120rem; /** toma los 120rem maximos y si no entonces toma el tamaño 100% disponible por default **/
+    margin: 0 auto; /** margenes que determinan que posicion se colocara un elemento **/
+}
+
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 5rem;
+    text-decoration: none;
+    font-size: 2rem;
+    text-transform: uppercase; /** cambiar a mayusculas **/
+    font-weight: bold;
+    border-radius: .5rem;   /** colocar esquinas redondeadas **/
+    width: 90%;
+    text-align: center;
+    border: none;
+}
+@media (min-width: 768px) { /** media querie para modificar el tamaño del boton **/
+    .boton {                /** en una resolucion de 768 pixeles, telefono android **/
+        width: auto;        /** el grosor es automatico **/
+    }
+}
+.boton:hover {
+    cursor: pointer;
+}
+
+.sombra {
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(56,56,56,0.4);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(56,56,56,0.4);
+    box-shadow: 0px 5px 15px 0px rgba(56,56,56,0.4);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+/* Tipografia */
+h1 {
+    font-size: 2.5rem; /** tamaño del contenido **/
+}
+h2 {
+    font-size: 2.8rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h1,h2,h3 {
+    text-align: center;
+}
+/* Titulos */
+.titulo span {  /** separar y modificar una palabra aparte **/
+    font-size: 2rem;
+}
+
+/* Utilidades */
+
+@media (min-width: 768px) {
+    .w-100 {
+        width: auto;
+    }
+}
+
+.flex {
+    display:flex;
+}
+
+.alinear-derecha {
+    justify-content: flex-end;
+}
+
+/* Navegacion Principal */
+.nav-bg {
+    background-color: var(--secundario);
+}
+                                /** En Flexbox solo puedes colocar y distribuir **/
+.navegacion-principal {         /** tus elementos en una dirección: fila (row)  **/
+    display: flex;              /** o columna (column), 'row' es aplicado por   **/
+    flex-direction: column;     /** default al defenir un display: flex;        **/
+}
+@media (min-width: 768px) {             /** el Media Querie entre otras cosas se encarga de hacer que nuestra **/
+    .navegacion-principal {             /** pagina web sea Responsive Web Desing lo que significa que adapta  **/
+        flex-direction: row;            /** la pagina web a varias pantallas y realiza modificaciones en ese  **/
+        justify-content: space-evenly   /** tamaño segun el codigo que coloquemos                             **/
+    }
+}
+
+
+.navegacion-principal a {   /** el display: block; Significa que el elemento se colocará**/
+    display: block;         /** uno debajo del otro sin importar su tamaño o contenido **/
+    text-align: center;     /** el display: inline; posicionara el elemento a la derecha **/
+    color: var(--blanco);   /** una vez que haya tomado el espacio que requiere **/
+    text-decoration: none;  /** <-- quita la linea de abajo de los hiperbinculos **/
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;              /** el margin separa a los elementos de otros elementos mientras que **/
+}                               /** el paddin separa el propio elemento hacia adentro haciendolo mas grande **/
+
+.navegacion-principal a:hover {        /** Pseudo Clase que crea elementos dentro de una clase **/
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+/* Primera Plana */
+.hero {     /** colocar una imagen en CCS**/
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat; /** evita que la imagne se repita hacia los lados **/
+    background-size: cover; /** toma tdo el ancho disponible **/
+    height: 450px;
+    position: relative; /** el padre siempre debe tener una posicion relativa -1 **/
+    margin-bottom: 2rem;
+}
+
+.contenido-hero { /** Clase para sobre poner al padre (imagen Hero) **/
+    position: absolute; /** -1 asi el hijo se pueda positicionar de forma absoluta **/
+    background-color: rgba( 0,0,0, .6 ); /** Forma de darle transparencia a las cosas **/
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column; /** justify-content solo funciona con la opcion (row) **/
+    align-items: center;    /** se debe utilizar esta opcion cuando haya un 'flex-direccion:column; **/
+}
+.contenido-hero h2,
+.contenido-hero p {          /** se puede aplicar una coma para aplicar la misma regla a **/
+   color: var(--blanco);     /** dos elementos dentro de una clase **/
+    margin-top: 9rem;
+}
+.ubitacion p {
+    margin-bottom: 0.2rem;
+}
+.contenido-hero h2 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.contenido-hero .ubitacion {
+    display:flex;
+    align-items: flex-end; /** alinear verticalmente sin que se cambie la propiedad (column) **/
+}
+
+/* Servicios */                                     /* display:grid; a diferencia de flexbox va a modificar */
+@media (min-width: 768px) {                         /* el contenido en 2 dimensiones lo cual tiene mas      */
+    .servicios {                                    /* opciones a la hora de modificar un contenido         */
+        display:grid;
+        grid-template-columns: repeat(3, 1fr); /* en esta opcion se crean 3 columnas de una(1) fraccion */
+        column-gap: 2rem;
+    }
+}
+/* Usar Flexbox para la alineación o distribucion de los elementos que estaran dentro de contenedores */
+/* Utiliza CCS Grid para definir el Layout (la composición) de tu sitio web como las columnas o los   */
+/* contenedores de elementos */
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: normal;
+}
+.servicio p {
+    line-height: 3rem; /* interlineado */
+    text-align: justify;
+}
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Contacto */
+.formulario {
+    background-color: var(--gris);
+    width: min( 60rem, 100% ); /* utilizar el valor mas pequeño */
+    margin: 0 auto; /* se usa cuando el padre no tiene un display flex */
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.formulario fieldset {
+    border: none;
+}
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario)
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem;
+    }
+}
+    .campo:nth-child(3),
+    .campo:nth-child(4) {   /* este pseuda clase sirve para seleccionar el numero decendente de una clase */
+        grid-column: 1 / 3; /* que tenga el mismo nombre */
+    }
+
+.campo {
+    margin-bottom: 1rem;
+}
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+.campo textarea {
+    height: 10rem;
+}
+
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+/* Footer */
+.footer {
+    text-align: center;
+}
